@@ -1,5 +1,5 @@
-<div class="container" (click)="listSelected()" style="cursor: pointer;">
-    <div class="row">
-        <h4>{{ltask.name}}</h4>
+<div class="container" (click)="listSelected()" style="cursor: pointer;" [ngClass] = "{'active': ltask.tasks == selectedList}">
+    <div class="row">                                                  
+        <h4>{{ltask.name.length>10? (ltask.name | slice:0:10)+'..':(ltask.name) }}</h4>
     </div>
 </div>

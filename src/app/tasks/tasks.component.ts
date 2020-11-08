@@ -10,6 +10,7 @@ import { TaskService } from '../shared/task.service';
 })
 export class TasksComponent implements OnInit, OnDestroy {
   tasks: Task[];
+  addTask: boolean = false;
   subscription : Subscription;
 
   constructor(private taskService: TaskService) {}
@@ -19,6 +20,19 @@ export class TasksComponent implements OnInit, OnDestroy {
       (tasks: Task[])=> {
         this.tasks = tasks;
       });
+  }
+
+  onAddTask(){
+    this.addTask = true;
+  }
+
+  onAccept(title:string){
+    this.taskService.addTask(new Task(title, new Date(2020,11), false));
+    this.addTask = false;
+  }
+
+  onClose(){
+    this.addTask = false;
   }
 
   ngOnDestroy(){

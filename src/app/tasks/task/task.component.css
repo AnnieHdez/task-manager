@@ -1,0 +1,21 @@
+.button-container button{
+    visibility: hidden;
+}
+
+.button-container{
+    cursor: pointer;
+}
+
+.button-container:hover button{
+    visibility: visible;
+}
+
+.done{
+    background-color: lightgreen;
+    color: green;
+}
+
+.toDo{
+    background-color: coral;
+    color: red;
+}

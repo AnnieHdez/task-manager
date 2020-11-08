@@ -8,7 +8,7 @@ export class TaskService {
     tasks: Task[];
     taskChanged = new Subject<Task[]>();
 
-    updateTask(list: ListTask) {
+    updateTasks(list: ListTask) {
         this.tasks = list.tasks;
         this.taskChanged.next(this.tasks.slice());
     }
@@ -20,18 +20,18 @@ export class TaskService {
             return null;
     }
 
-    // addList(list: ListTask) {
-    //     this.lists.push(list);
-    //     this.listsChanged.next(this.lists.slice());
-    // }
+    addTask(task: Task) {
+        this.tasks.push(task);
+        this.taskChanged.next(this.tasks.slice());
+    }
 
-    // updateList(list: ListTask, index: number) {
-    //     this.lists[index] = list;
-    //     this.listsChanged.next(this.lists.slice());
-    // }
+    updateTask(index: number, title: string) {
+        this.tasks[index].name = title;
+        this.taskChanged.next(this.tasks.slice());
+    }
 
-    // deleteList(index: number) {
-    //     this.lists.splice(index,1);
-    //     this.listsChanged.next(this.lists.slice());
-    // }
+    deleteTask(index: number) {
+        this.tasks.splice(index,1);
+        this.taskChanged.next(this.tasks.slice());
+    }
 }

@@ -1,5 +1,6 @@
 import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { TaskService } from '../shared/task.service';
 import { ListTask } from './list-tasks.model';
 import { ListService } from './list.service';
 
@@ -13,7 +14,7 @@ export class ListComponent implements OnInit, OnDestroy {
   ltasks: ListTask[];
   addList: Boolean = false;
 
-  constructor(private listervice: ListService, private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private listervice: ListService, private taskService: TaskService) { }
 
   ngOnInit(): void {
     this.subscription = this.listervice.listsChanged.subscribe(
@@ -30,8 +31,10 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   onAccept(title:string){
-    this.listervice.addList(new ListTask(title, "NEW", []))
+    let newList = new ListTask(title, "NEW", []);
+    this.listervice.addList(newList)
     this.addList = false;
+    this.taskService.updateTasks(newList);
   }
 
   ngOnDestroy(){

@@ -1,1 +1,15 @@
-<p>{{task.name}}</p>
+<app-alarm [message]="'Enter the new name for the task'" *ngIf="addTask" (close)="onClose()" (accept)="onAccept($event)"></app-alarm>
+<div class="button-container" [ngClass]="{'done': task.completed, 'toDo':!task.completed }">
+    <div class="row">
+        <div class="col-xs-8 col-sm-10" (click)="changeState()">
+            <p>{{task.name.length>10? (task.name | slice:0:10)+'..':(task.name) }}</p>           
+        </div>
+        <div class="col-xs-2 col-sm-1">
+            <button class="btn btn-primary" (click)="onEdit()">Edit</button>
+        </div>
+        <div class="col-xs-2 col-sm-1">
+            <button class="btn btn-primary" (click)="onDelete()">Delete</button>
+        </div>
+    </div>
+</div>
+
