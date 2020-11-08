@@ -1,0 +1,20 @@
+<!-- <ng-template appPlaceholder></ng-template> -->
+<app-alarm [message]="'Enter the name for the new list'" *ngIf="addList" (close)="onClose()" (accept)="onAccept($event)"></app-alarm>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+        <h2>Lists</h2>
+        <hr/>
+        <div class="row">
+            <div class="col-xs-12">
+                <app-list-element
+                    *ngFor="let ltask of ltasks; let i = index" 
+                    [ltask] = "ltask" 
+                    [index] = "i">
+                </app-list-element>
+            </div>
+        </div>
+        <button class="btn btn-primary" (click)="addTaskList()">New List</button>
+    </div>
+    </div>
+</div>
